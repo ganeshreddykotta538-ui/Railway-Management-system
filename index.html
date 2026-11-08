@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Railway Platform Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- LOGIN AND SIGNUP -->
+  <section class="auth-page" id="loginPage">
+    <div class="auth-card">
+      <div class="logo">🚆</div>
+      <h1 id="authTitle">Create Account</h1>
+      <p class="muted" id="authSubtitle">Railway Control Room Management</p>
+
+      <form id="registerForm">
+        <label>Create Username</label>
+        <input type="text" id="newUsername" placeholder="Enter username" required minlength="3">
+
+        <label>Create Password</label>
+        <input type="password" id="newPassword" placeholder="Enter password" required minlength="6">
+
+        <label>Confirm Password</label>
+        <input type="password" id="confirmPassword" placeholder="Confirm password" required minlength="6">
+
+        <button class="primary-btn" type="submit">Create Account</button>
+      </form>
+
+      <form id="loginForm" hidden>
+        <label>Username</label>
+        <input type="text" id="username" placeholder="Enter username" required>
+
+        <label>Password</label>
+        <input type="password" id="password" placeholder="Enter password" required>
+
+        <button class="primary-btn" type="submit">Login to Dashboard</button>
+      </form>
+
+      <p class="message" id="authMessage"></p>
+
+      <p class="switch-text" id="loginSwitch">
+        Already have an account?
+        <a href="#" id="showLogin">Login</a>
+      </p>
+
+      <p class="switch-text" id="signupSwitch" hidden>
+        New user?
+        <a href="#" id="showSignup">Create Account</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- DASHBOARD -->
+  <div class="dashboard" id="dashboard" hidden>
+
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-icon">🚆</div>
+        <div>
+          <h2>RAIL CONTROL</h2>
+          <small>MANAGEMENT SYSTEM</small>
+        </div>
+      </div>
+
+      <p class="nav-heading">MAIN MENU</p>
+      <a href="#overview" class="nav-link active">▦ Overview</a>
+      <a href="#platforms" class="nav-link">▤ Platforms</a>
+      <a href="#addTrain" class="nav-link">＋ Add Train</a>
+      <a href="#schedule" class="nav-link">◷ Train Schedule</a>
+
+      <div class="sidebar-bottom">
+        <div class="online"><span></span> System Online</div>
+        <button id="logoutBtn" class="logout-btn">↪ Logout</button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+
+      <header class="topbar">
+        <div>
+          <h1>Railway Operations</h1>
+          <p>Platform allocation and train monitoring dashboard</p>
+        </div>
+        <div class="clock-box">
+          <span>● LIVE SYSTEM</span>
+          <h3 id="clock">00:00:00</h3>
+        </div>
+      </header>
+
+      <section id="overview">
+        <div class="welcome">
+          <div>
+            <span class="eyebrow">CONTROL CENTRE / OVERVIEW</span>
+            <h2>Railway Dashboard</h2>
+            <p>Monitor trains and manage platform assignments in real time.</p>
+          </div>
+          <div class="welcome-icon">🚉</div>
+        </div>
+
+        <div class="stats">
+          <div class="stat-card">
+            <span>Total Trains</span>
+            <h2 id="totalTrains">0</h2>
+            <small>Registered trains</small>
+          </div>
+
+          <div class="stat-card">
+            <span>Occupied Platforms</span>
+            <h2 id="occupied">0</h2>
+            <small>Currently allocated</small>
+          </div>
+
+          <div class="stat-card">
+            <span>Available Platforms</span>
+            <h2 id="available">6</h2>
+            <small>Ready for allocation</small>
+          </div>
+
+          <div class="stat-card">
+            <span>Waiting Trains</span>
+            <h2 id="waiting">0</h2>
+            <small>Awaiting a platform</small>
+          </div>
+        </div>
+      </section>
+
+      <!-- PLATFORMS -->
+      <section class="section" id="platforms">
+        <div class="section-title">
+          <div>
+            <span class="eyebrow">STATION INFRASTRUCTURE</span>
+            <h2>Platform Status</h2>
+          </div>
+          <span class="live-badge">● Live Status</span>
+        </div>
+
+        <div class="platform-grid" id="platformGrid"></div>
+      </section>
+
+      <!-- ADD TRAIN -->
+      <section class="section" id="addTrain">
+        <div class="section-title">
+          <div>
+            <span class="eyebrow">TRAIN OPERATIONS</span>
+            <h2>Add New Train</h2>
+          </div>
+        </div>
+
+        <form id="trainForm" class="train-form">
+          <div>
+            <label>Train Number</label>
+            <input id="trainNumber" type="text" placeholder="Example: 12625" required>
+          </div>
+
+          <div>
+            <label>Train Name</label>
+            <input id="trainName" type="text" placeholder="Train name" required>
+          </div>
+
+          <div>
+            <label>Arrival Time</label>
+            <input id="arrival" type="time" required>
+          </div>
+
+          <div>
+            <label>Departure Time</label>
+            <input id="departure" type="time" required>
+          </div>
+
+          <button class="primary-btn" type="submit">＋ Allocate Platform</button>
+        </form>
+
+        <p class="message" id="result"></p>
+      </section>
+
+      <!-- SCHEDULE -->
+      <section class="section" id="schedule">
+        <div class="section-title">
+          <div>
+            <span class="eyebrow">SCHEDULE MANAGEMENT</span>
+            <h2>Train Schedule</h2>
+          </div>
+          <div class="actions">
+            <button class="secondary-btn" id="demoBtn">Load Demo Data</button>
+            <button class="danger-btn" id="resetBtn">Reset</button>
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Train No.</th>
+                <th>Train Name</th>
+                <th>Arrival</th>
+                <th>Departure</th>
+                <th>Platform</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="trainTable">
+              <tr><td colspan="7" class="empty">No trains added yet.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <footer>RAIL CONTROL SYSTEM © 2026 | Railway Platform Management Project</footer>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
