@@ -2,8 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 * {
-  margin: 0;
-  padding: 0;
+  margin: 5;
+  padding: 5;
   box-sizing: border-box;
 }
 
@@ -24,7 +24,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 30px;
   background:
     radial-gradient(circle at 20% 20%, #1e3a5f 0, transparent 35%),
     radial-gradient(circle at 80% 80%, #172554 0, transparent 35%),
